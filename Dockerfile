@@ -1,5 +1,5 @@
-# Use an official Node.js image as the base image
-FROM node:20.10.0-alpine
+# Use the official Node.js image from ECR Public Gallery as the base image
+FROM public.ecr.aws/docker/library/node:20-alpine
 
 # Set the working directory in the container
 WORKDIR /app
@@ -14,7 +14,7 @@ RUN npm install
 COPY . .
 
 # Expose port 3000 to the outside world
-EXPOSE 3000
+EXPOSE 4000
 
 # Command to run the application
 CMD ["npm", "run", "dev"]

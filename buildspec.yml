@@ -7,13 +7,16 @@ phases:
       - aws ecr get-login-password --region $AWS_DEFAULT_REGION | docker login --username AWS --password-stdin 891377328182.dkr.ecr.us-east-1.amazonaws.com/ecr-devops-frontend
   build:
     commands:
+      - echo Build started on `date`
       - echo Building the Docker image...
       - docker build -t frontend-image .
-      - docker tag frontend-image:latest 891377328182.dkr.ecr.us-east-1.amazonaws.com/ecr-devops-frontend:latest
   post_build:
     commands:
-      - echo Pushing the Docker image...
-      - docker push 891377328182.dkr.ecr.us-east-1.amazonaws.com/ecr-devops-frontend/frontend-image:latest
+      - echo Pushing the Docker image to Amazon ECR...
+      - docker tag frontend-image:latest 891377328182.dkr.ecr.us-east-1.amazonaws.com/ecr-devops-frontend:latest
+      - docker push 891377328182.dkr.ecr.us-east-1.amazonaws.com/ecr-devops-frontend:latest
+
 artifacts:
   files:
     - '**/*'
+  discard-paths: yes
