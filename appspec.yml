@@ -6,10 +6,6 @@ files:
     destination: /opt/devops/frontend
 
 hooks:
-  ApplicationStop:
-    - location: docker-scripts/stop.sh
-      timeout: 300
-      runas: root
   BeforeInstall:
     - location: docker-scripts/beforeinstall.sh
       timeout: 300
