@@ -1,6 +1,10 @@
 version: 0.0
 os: linux
 
+files:
+  - source: /
+    destination: /opt/devops/frontend
+
 hooks:
   ApplicationStop:
     - location: docker-scripts/stop.sh
